@@ -6,12 +6,14 @@
 #include "mbed.h"
 #include "../Joystick_PS3/JoystickPS3.h"
 #include "../servo_KRAI/servoKRAI.h"
+#include "../Motors/Motor.h"
 
-#define SERVO PB_3
+#define SERVO PB_5
 
 DigitalOut led(LED1);
-servoKRAI servo(SERVO, 0.0);
+servoKRAI servo(SERVO);
 JoystickPS3 StickPS(PC_12,PD_2);
+Motor motor(SERVO, PC_10, PC_13);
 
 float B1, B2, B3;
 
@@ -31,19 +33,23 @@ int main()
     while(true){
         StickPS.baca_data();
 
-        // if (StickPS.getButtonDown() && (StickPS.getR1() )){
-        //     led=0;   
-        // }
+        if (StickPS.getButtonDown() && (StickPS.getR1() )){
+            led=0;   
+        }
 
         // if (StickPS.getButtonUp())
         //     led=1; 
 
         // if (StickPS.getRX()==-128) // analog kanan : kanan
-        servo.position(50);
-        wait_us(3000000);
-        servo.position(0);
-        wait_us(3000000);
+        // servo.position(50);
+        // wait_us(3000000);
+        // servo.position(0);
+        // wait_us(3000000);
 
+        // motor.speed(0.5);
+        // wait_us(1000000);
+        // motor.speed(0);
+        // wait_us(1000000);
         // if (StickPS.getRX()==127) // analog kanan : kanan
         // if (StickPS.getRX()==-128) // analog kanan : kiri 
         // if (StickPS.getRY()==127) // analog kanan : bawah
