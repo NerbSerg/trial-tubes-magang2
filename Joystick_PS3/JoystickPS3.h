@@ -156,6 +156,12 @@ class JoystickPS3 {
 
         bool getL2();
 
+        int getRX();
+        int getRY();
+        int getLX();
+        int getLY();
+
+
         void stickState(float *vx_cmd, float *vy_cmd, float *w_cmd);
 
         // Send SPI Stick State to main program

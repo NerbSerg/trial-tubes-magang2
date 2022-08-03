@@ -631,3 +631,24 @@ bool JoystickPS3::getR1(){
 bool JoystickPS3::getR2(){
     return this->R2;
 }
+
+bool JoystickPS3::getL1(){
+    return this->L1;
+}
+bool JoystickPS3::getL2(){
+    return this->L2;
+}
+
+
+int JoystickPS3::getRX(){
+    return this->RX;
+}
+int JoystickPS3::getRY(){
+    return this->RY;
+}
+int JoystickPS3::getLX(){
+    return this->LX;
+}
+int JoystickPS3::getLY(){
+    return this->LY;
+}
