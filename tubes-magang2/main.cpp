@@ -31,15 +31,33 @@ int main()
     while(true){
         StickPS.baca_data();
 
-        if (StickPS.getButtonDown() && StickPS.getLingkaran()){
-            led=0;   
-        }
+        // if (StickPS.getButtonDown() && (StickPS.getR1() )){
+        //     led=0;   
+        // }
 
-        if (StickPS.getButtonUp())
-            led=1; 
+        // if (StickPS.getButtonUp())
+        //     led=1; 
+
+        // if (StickPS.getRX()==-128) // analog kanan : kanan
+        servo.position(50);
+        wait_us(3000000);
+        servo.position(0);
+        wait_us(3000000);
+
+        // if (StickPS.getRX()==127) // analog kanan : kanan
+        // if (StickPS.getRX()==-128) // analog kanan : kiri 
+        // if (StickPS.getRY()==127) // analog kanan : bawah
+        // if (StickPS.getRY()==-128) // analog kanan : atas
+
+        // if (StickPS.getLX()==127) // analog kiri : kanan
+        // if (StickPS.getLX()==-128) // analog kiri : kiri 
+        // if (StickPS.getLY()==127) // analog kiri : bawah
+        // if (StickPS.getLY()==-128) // analog kiri : atas
+
+
+
 
         // if (StickPS.getLingkaran())
-
         // servo.position(50.0);
 
         // printf("Nigel Sahl\n");
