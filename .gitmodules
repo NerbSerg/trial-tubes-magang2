@@ -1,0 +1,6 @@
+[submodule "servoKRAI"]
+	path = servoKRAI
+	url = https://github.com/KRAI-ITB/servoKRAI
+[submodule "JoystickPS3"]
+	path = JoystickPS3
+	url = https://github.com/KRAI-ITB/JoystickPS3.git

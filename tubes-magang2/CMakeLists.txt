@@ -11,9 +11,11 @@ include(${MBED_PATH}/tools/cmake/app.cmake)
 
 project(${APP_TARGET})
 
-dd_subdirectory(${MBED_PATH} ${CMAKE_CURRENT_BINARY_DIR}/mbed-os)
+add_subdirectory(${MBED_PATH} ${CMAKE_CURRENT_BINARY_DIR}/mbed-os)
 
 add_executable(${APP_TARGET}
+    ../servoKRAI/servoKRAI.cpp
+    ../JoystickPS3/JoystickPS3.cpp
     main.cpp
 )
 
