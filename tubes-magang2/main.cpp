@@ -4,8 +4,8 @@
  */
 
 #include "mbed.h"
-#include "../JoystickPS3/JoystickPS3.h"
-#include "../servoKRAI/servoKRAI.h"
+#include "../Joystick_PS3/JoystickPS3.h"
+#include "../servo_KRAI/servoKRAI.h"
 
 #define SERVO PB_3
 

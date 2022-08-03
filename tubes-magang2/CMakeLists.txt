@@ -14,8 +14,8 @@ project(${APP_TARGET})
 add_subdirectory(${MBED_PATH} ${CMAKE_CURRENT_BINARY_DIR}/mbed-os)
 
 add_executable(${APP_TARGET}
-    ../servoKRAI/servoKRAI.cpp
-    ../JoystickPS3/JoystickPS3.cpp
+    ../servo_KRAI/servoKRAI.cpp
+    ../Joystick_PS3/JoystickPS3.cpp
     main.cpp
 )
 
