@@ -592,3 +592,42 @@ void JoystickPS3::sendSPIStickState(uint8_t* data_send_spi, uint32_t* data_sampl
     *data_send_spi = this->send_spi;
     *data_sampling_spi = this->sampling_spi;
 }
+
+
+
+bool JoystickPS3::getButtonUp(){
+    return this->atas;
+}
+bool JoystickPS3::getButtonDown(){
+    return this->bawah;
+}
+bool JoystickPS3::getButtonLeft(){
+    return this->kiri;
+}
+bool JoystickPS3::getButtonRight(){
+    return this->kanan;
+}
+
+
+
+bool JoystickPS3::getSegitiga(){
+    return this->segitiga;
+}
+bool JoystickPS3::getLingkaran(){
+    return this->lingkaran;
+}
+bool JoystickPS3::getKotak(){
+    return this->kotak;
+}
+bool JoystickPS3::getSilang(){
+    return this->silang;
+}
+
+
+
+bool JoystickPS3::getR1(){
+    return this->R1;
+}
+bool JoystickPS3::getR2(){
+    return this->R2;
+}

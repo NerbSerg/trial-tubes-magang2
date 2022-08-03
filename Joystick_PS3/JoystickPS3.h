@@ -132,6 +132,30 @@ class JoystickPS3 {
 
         // Read stick state and modify vc_cmd, vy_cmd, and w_cmd accordingly
 
+         bool getButtonUp();
+
+        bool getButtonDown();
+
+        bool getButtonRight();
+
+        bool getButtonLeft();
+        
+        bool getSegitiga();
+
+        bool getLingkaran();
+        
+        bool getSilang();
+
+        bool getKotak();
+        
+        bool getR1();
+        
+        bool getR2();
+
+        bool getL1();
+
+        bool getL2();
+
         void stickState(float *vx_cmd, float *vy_cmd, float *w_cmd);
 
         // Send SPI Stick State to main program
