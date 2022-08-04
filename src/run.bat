@@ -1,0 +1,1 @@
+ninja -C cmake_build/NUCLEO_F446RE/develop/GCC_ARM
