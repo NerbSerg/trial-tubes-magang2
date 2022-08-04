@@ -25,3 +25,11 @@ Komponen kontrol
 Kontroller
 Joystick
 1. 
+
+Guys, gw ganti nama folder "tubes-magang-2" ke "src" karena ribet nama repo sama folder sama, ada beberapa hal yang harus kalian lakuin ulang:
+1. Delete folder CmakeList
+2. Configure ulang
+3. Cmake ulang
+4. Ninja ulang
+5. Sekian, terima kasih
+- Carlios
