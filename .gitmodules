@@ -4,3 +4,9 @@
 [submodule "JoystickPS3"]
 	path = JoystickPS3
 	url = https://github.com/KRAI-ITB/JoystickPS3.git
+[submodule "src/pidLo"]
+	path = src/pidLo
+	url = https://github.com/KRAI-ITB/pidLo.git
+[submodule "encoderKRAI"]
+	path = encoderKRAI
+	url = https://github.com/KRAI-ITB/encoderKRAI.git

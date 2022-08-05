@@ -4,18 +4,64 @@
  */
 
 #include "mbed.h"
+#include "../encoderKRAI/encoderKRAI.h"
 #include "../Joystick_PS3/JoystickPS3.h"
 #include "../servo_KRAI/servoKRAI.h"
 #include "../Motors/Motor.h"
+#include "../pidLo/pidLo.h"
 
-#define SERVO PB_5
+#define ENCODER1_CHA PC_1
+#define ENCODER1_CHB PC_0
+#define ENCODER1_PPR 538
+#define ENCODER1_RES X4_ENCODING
 
-DigitalOut led(LED1);
-servoKRAI servo(SERVO);
-JoystickPS3 StickPS(PC_12,PD_2);
-Motor motor(SERVO, PC_10, PC_13);
+#define ENCODER2_CHA PC_5
+#define ENCODER2_CHB PC_4
+#define ENCODER2_PPR 538
+#define ENCODER2_RES X4_ENCODING
+
+#define ENCODER3_CHA PB_14
+#define ENCODER3_CHB PB_2
+#define ENCODER3_PPR 538
+#define ENCODER3_RES X4_ENCODING
+
+#define ENCODER4_CHA PB_15
+#define ENCODER4_CHB PC_8
+#define ENCODER4_PPR 538
+#define ENCODER4_RES X4_ENCODING
+
+#define ENCODER5_CHA PA_13
+#define ENCODER5_CHB PA_12
+#define ENCODER5_PPR 538
+#define ENCODER5_RES X4_ENCODING
+
+
+#define KP 0.005
+#define KI 0.00005
+#define KD 0
+#define TS 0.001
+
+#define MAXOUT 1
+#define VFF 0
+#define RPF 1000
+#define MAXIN 100
+
+// DigitalOut led(LED1);
+// servoKRAI servo(SERVO);
+// JoystickPS3 StickPS(PC_12,PD_2);
+Motor motor(PB_9, PC_2, PC_3);
+pidLo PID(KP, KI, KD, TS, MAXOUT, VFF, RPF, MAXIN);
+encoderKRAI enc1(ENCODER1_CHA, ENCODER1_CHB, ENCODER1_PPR, Encoding::X4_ENCODING);
+encoderKRAI enc2(ENCODER2_CHA, ENCODER2_CHB, ENCODER2_PPR, Encoding::X4_ENCODING);
+encoderKRAI enc3(ENCODER3_CHA, ENCODER3_CHB, ENCODER3_PPR, Encoding::X4_ENCODING);
+encoderKRAI enc4(ENCODER4_CHA, ENCODER4_CHB, ENCODER4_PPR, Encoding::X4_ENCODING);
+encoderKRAI enc5(ENCODER5_CHA, ENCODER5_CHB, ENCODER5_PPR, Encoding::X4_ENCODING);
 
 float B1, B2, B3;
+int target = 2000;
+
+int pulse = 0;
+float pwm = 0;
 
 
 FileHandle *mbed::mbed_override_console(int fd)
@@ -27,56 +73,21 @@ FileHandle *mbed::mbed_override_console(int fd)
 
 int main()
 {
-    led=0;
-    StickPS.setup();
-    StickPS.stickState(&B1, &B2, &B3);
+    int timer = 0;
+    
     while(true){
-        StickPS.baca_data();
-
-        if (StickPS.getButtonDown() && (StickPS.getR1() )){
-            led=0;   
-        }
-
-        // if (StickPS.getButtonUp())
-        //     led=1; 
-
-        // if (StickPS.getRX()==-128) // analog kanan : kanan
-        // servo.position(50);
-        // wait_us(3000000);
-        // servo.position(0);
-        // wait_us(3000000);
-
-        // motor.speed(0.5);
-        // wait_us(1000000);
-        // motor.speed(0);
-        // wait_us(1000000);
-        // if (StickPS.getRX()==127) // analog kanan : kanan
-        // if (StickPS.getRX()==-128) // analog kanan : kiri 
-        // if (StickPS.getRY()==127) // analog kanan : bawah
-        // if (StickPS.getRY()==-128) // analog kanan : atas
-
-        // if (StickPS.getLX()==127) // analog kiri : kanan
-        // if (StickPS.getLX()==-128) // analog kiri : kiri 
-        // if (StickPS.getLY()==127) // analog kiri : bawah
-        // if (StickPS.getLY()==-128) // analog kiri : atas
-
-
-
-
-        // if (StickPS.getLingkaran())
-        // servo.position(50.0);
-
-        // printf("Nigel Sahl\n");
         
-        // wait_us(1000000);
-        // servo.position(0.0);
+        if((us_ticker_read() - timer) > TS*1000){
+            timer = us_ticker_read();
 
-        // printf("Nigel\n");
+            pulse = enc2.getPulses();
 
-        // wait_us(1000000);
+            pwm = PID.createpwm(target, pulse, 0.5);
 
-        // printf("%d %d %d/n", B1, B2, B3);
-
+            motor.speed(pwm);
+            printf("%d %d %f\n", pulse, target, pwm);
+            // printf("%d %d %d %d %d\n", enc1.getPulses(), enc2.getPulses(), enc3.getPulses(), enc4.getPulses(), enc5.getPulses());
+        }
     }
     // printf("Hello, Mbed!\n");
     return 0;
